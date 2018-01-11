@@ -4,23 +4,18 @@ const sequelize = new Sequelize('bloggy-mc-bloggers', 'chrisaquino', '', {
   dialect: 'postgres'
 });
 
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log('That totally connected. yeah!');
-  })
-  .catch((err) => {
-    console.error('Oh noes that did not work. :(')
-  });
+module.exports = sequelize;
 
-const User = sequelize.define('user', {
-  firstName: {
-    type: Sequelize.STRING
-  },
-  lastName: {
-    type: Sequelize.STRING
-  }
-});
+// sequelize
+//   .authenticate()
+//   .then(() => {
+//     console.log('That totally connected. yeah!');
+//   })
+//   .catch((err) => {
+//     console.error('Oh noes that did not work. :(')
+//   });
+
+
 
 // User.sync()
 //   .then(() => {
@@ -31,15 +26,15 @@ const User = sequelize.define('user', {
 //     });
 //   });
 
-User.findOne({
-  where: {
-    id: 1
-  }
-})
-.then((me) => {
-   console.log(me);
-});
+// User.findOne({
+//   where: {
+//     id: 1
+//   }
+// })
+// .then((me) => {
+//    console.log(me);
+// });
 
-module.exports = User;
+
 
 
