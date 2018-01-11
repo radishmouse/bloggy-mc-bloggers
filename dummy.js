@@ -19,7 +19,7 @@ User.findOne({
 
   // Another way:
   let anotherPost = Post.build({ title: 'tres', content: 'please work' });
-  anotherPost.setUser(authoer);
+  anotherPost.setUser(author);
 
 })
 
