@@ -15,6 +15,12 @@ User.findOne({
     // post.setComments([])
     post.save();
   })
+
+
+  // Another way:
+  let anotherPost = Post.build({ title: 'tres', content: 'please work' });
+  anotherPost.setUser(authoer);
+
 })
 
 
