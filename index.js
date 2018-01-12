@@ -2,11 +2,17 @@
 const express = require('express');
 // const server = http.createServer((req, res) => {});
 const app = express();
+app.use(express.static('public'));
 
 const Post = require('./models/post');
 
+app.use((req, res, next) => {
+  console.log(`Got a Request: ${req.path}`);
+  next();
+});
 
 app.get('/', (req, res) => {
+  console.log('In the main route!');
   console.log('yep got a GET request');
   // res.send('Hey Builders!');
   Post.findOne({
