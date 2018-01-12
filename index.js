@@ -3,9 +3,22 @@ const express = require('express');
 // const server = http.createServer((req, res) => {});
 const app = express();
 
+const Post = require('./models/post');
+
+
 app.get('/', (req, res) => {
   console.log('yep got a GET request');
-  res.send('Hey Builders!');
+  // res.send('Hey Builders!');
+  Post.findOne({
+    where: {
+      id: 1
+    }
+  })
+    .then(post => {
+      res.send(`<h1>${post.title}</h1>
+      <br>
+      <p>${post.content}</p>`);
+    });
 });
 
 app.post('/', (req, res) => {
