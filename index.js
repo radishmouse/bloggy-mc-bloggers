@@ -10,6 +10,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const posts = require('./routes/posts');
 app.use(posts);
 
+var expressHbs = require('express-handlebars');
+
+app.engine('.hbs', expressHbs({defaultLayout: 'layout', extname: '.hbs'}));
+app.set('view engine', '.hbs');
+
+app.get('/please-work', (req, res) => {
+  res.render('home', {
+    title: "yay it worked"
+  })
+})
+
 app.listen(3000, () => {
   console.log('Running on port 3000');
 });

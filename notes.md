@@ -5,8 +5,8 @@
 - `npm install express-handlebars`
 - `mkdir views`
 - `cd views/`
-- `touch home.handlebars`
+- `touch home.hbs`
 - `mkdir layouts`
-- `touch layouts/main.handlebars`
+- `touch layouts/layout.hbs`
 
 

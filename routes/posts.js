@@ -16,8 +16,6 @@ router.route('/blog')
       res.send(post);
     });
 
-
-
   })
   .get((req, res) => {
     Post.findAll()
