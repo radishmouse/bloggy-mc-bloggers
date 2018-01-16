@@ -11,9 +11,10 @@ const p = Post.build({
   content: 'It was the best of times, it was the worst of times'
 });
 p.setUser(me);
-
 p.save();
+
 me.save();
+
 
 // Post.create({
 //   title: 'First post!',
