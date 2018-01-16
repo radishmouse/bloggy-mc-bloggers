@@ -12,17 +12,26 @@ router.route('/blog')
       title: req.body.title,
       content: req.body.content,
       userId: req.body.userId
-    }).then(post => {
-      res.send(post);
+    }).then(newPost => {
+      res.redirect(`/blog/${newPost.id}`);
     });
 
   })
   .get((req, res) => {
     Post.findAll()
       .then(allPosts => {
-        // res.send(allPosts);
+
+        const posts = allPosts.map(p => {
+          return {
+            title: p.title,
+            content: p.content.substring(0, 10) + '...',
+            id: p.id
+          }
+        });
+
         res.render('blog-list', {
-          posts: allPosts
+          // posts: allPosts
+          posts: posts
         });
       });
   })

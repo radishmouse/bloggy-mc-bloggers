@@ -1,6 +1,11 @@
+<a href="/blog/new">Write new post!</a>
+
 {{#each posts}}
   <div>
     <h2>{{title}}</h2>
     <p>{{content}}</p>
+    <p>
+      <a href="/blog/{{id}}">Read more...</a>
+    </p>
   </div>
 {{/each}}
