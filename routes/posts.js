@@ -5,9 +5,19 @@ const Post = require('../models/post');
 
 router.route('/blog')
   .post((req, res) => {
-    // TODO: do this one
-    debugger;
-    res.send('TODO: do this one');
+
+    console.log(req.body);
+
+    Post.create({
+      title: req.body.title,
+      content: req.body.content,
+      userId: req.body.userId
+    }).then(post => {
+      res.send(post);
+    });
+
+
+
   })
   .get((req, res) => {
     Post.findAll()
