@@ -4,6 +4,8 @@ const router = express.Router();
 const Post = require('../models/post');
 const ensureAuthenticated = require('../auth').ensureAuthenticated;
 
+// This will make all routes on this router
+// require login.
 router.all('*', ensureAuthenticated);
 
 router.route('/blog')
@@ -19,6 +21,9 @@ router.route('/blog')
       res.redirect(`/blog/${newPost.id}`);
     });
   })
+  // Alternatively, you can use the
+  // `ensureAuthenticated` route handler
+  // to protect a single route method
   .get(ensureAuthenticated, (req, res) => {
     Post.findAll()
       .then(allPosts => {

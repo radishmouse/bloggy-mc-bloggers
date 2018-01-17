@@ -24,7 +24,9 @@ app.get('/', (req, res) => {
     console.log(`req.session.passport.user: ${req.session.passport.user}`);
   }
   res.render('home', {
-    title: "yay it worked"
+    title: "yay it worked",
+    isLoggedIn: req.isAuthenticated() // Providing a var to the template
+                                      // So we can conditionally show nav links
   })
 });
 
