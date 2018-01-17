@@ -1,8 +1,22 @@
 const express = require('express');
 const router = express.Router();
-const passport = require('passport');
-const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
+
+// const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 const Post = require('../models/post');
+
+
+function ensureAuthenticated(req, res, next) {
+
+  if (req.isAuthenticated()) {
+    // req.user is available for use here
+    console.log('we are all good');
+    return next();
+  }
+  console.log('clearly, they are not authenticated');
+    // denied. redirect to login
+  res.redirect('/');
+}
+
 
 router.route('/blog')
   .post((req, res) => {
@@ -17,7 +31,7 @@ router.route('/blog')
       res.redirect(`/blog/${newPost.id}`);
     });
   })
-  .get(ensureLoggedIn('/login'), (req, res) => {
+  .get(ensureAuthenticated, (req, res) => {
     Post.findAll()
       .then(allPosts => {
 
