@@ -11,6 +11,9 @@
   <input type="submit">
 </form>
 
+{{#if id}}
+<a href="/blog/{{id}}">View blog post</a>
+<br>
 {{!-- <form action="/blog/{{id}}/delete" method="POST">
   <input type="submit" value="Delete Post">
 </form> --}}
@@ -20,8 +23,8 @@
   data-delete-url="/blog/{{id}}"
 >Delete Post Using Ajax</button>
 
+{{/if}}
 
-<a href="/blog/{{id}}">Return to view blog post</a>
 
 <script src="/scripts/main.js"></script>
 
