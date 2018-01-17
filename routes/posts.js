@@ -15,7 +15,6 @@ router.route('/blog')
     }).then(newPost => {
       res.redirect(`/blog/${newPost.id}`);
     });
-
   })
   .get((req, res) => {
     Post.findAll()
