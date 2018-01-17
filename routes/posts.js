@@ -57,6 +57,38 @@ router.route('/blog/:id')
       });
     })
   })
+  .delete((req, res) => {
+    console.log('You are trying to delete via Ajax');
+    Post.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(result => {
+      result.destroy()
+        .then(() => {
+          console.log('You deleted the thing');
+          res.send({message: `successfully deleted post ${req.params.id}`})
+        });
+    });
+  })
+
+router.route('/blog/:id/delete')
+  .post((req, res) => {
+    // delete the thing.
+
+    // res.redirect(`/blog/${req.params.id}/edit`);
+    Post.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(result => {
+      result.destroy()
+        .then(() => {
+          console.log('You deleted the thing');
+          res.redirect('/blog/new');
+        });
+    });
+  });
 
 router.route('/blog/:id/edit')
   .get((req, res) => {
