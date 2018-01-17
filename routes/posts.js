@@ -1,22 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-// const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 const Post = require('../models/post');
+const ensureAuthenticated = require('../auth').ensureAuthenticated;
 
-
-function ensureAuthenticated(req, res, next) {
-
-  if (req.isAuthenticated()) {
-    // req.user is available for use here
-    console.log('we are all good');
-    return next();
-  }
-  console.log('clearly, they are not authenticated');
-    // denied. redirect to login
-  res.redirect('/');
-}
-
+router.all('*', ensureAuthenticated);
 
 router.route('/blog')
   .post((req, res) => {
