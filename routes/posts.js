@@ -52,10 +52,46 @@ router.route('/blog/:id')
     }).then(result => {
       res.render('blog-single', {
         title: result.title,
-        content: result.content
+        content: result.content,
+        id: result.id
       });
     })
   })
 
+router.route('/blog/:id/edit')
+  .get((req, res) => {
+    Post.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(result => {
+      res.render('blog-form', {
+        title: result.title,
+        content: result.content,
+        editRoute: `/${result.id}/edit`,
+        id: result.id
+      });
+    })
+  })
+  .post((req, res) => {
+    Post.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(result => {
+      result.update({
+        title: req.body.title,
+        content: req.body.content
+      }).then(updatedResult => {
+        res.render('blog-form', {
+          title: updatedResult.title,
+          content: updatedResult.content,
+          editRoute: `/${updatedResult.id}/edit`,
+          id: updatedResult.id,
+          message: 'Successfully updated blog post!'
+        });
+      });
+    });
+  })
 
 module.exports = router;
