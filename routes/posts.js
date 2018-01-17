@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-
+const passport = require('passport');
+const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 const Post = require('../models/post');
 
 router.route('/blog')
@@ -16,7 +17,7 @@ router.route('/blog')
       res.redirect(`/blog/${newPost.id}`);
     });
   })
-  .get((req, res) => {
+  .get(ensureLoggedIn('/login'), (req, res) => {
     Post.findAll()
       .then(allPosts => {
 

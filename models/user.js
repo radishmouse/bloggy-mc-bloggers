@@ -7,7 +7,12 @@ const User = sequelize.define('user', {
   },
   lastName: {
     type: Sequelize.STRING
+  },
+  githubid: {
+    type: Sequelize.INTEGER
   }
 });
+
+//alter table users add column githubId integer;
 
 module.exports = User;
