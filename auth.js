@@ -20,8 +20,8 @@ const setupAuth = (app) => {
 
   // #3 set up passport strategy
   passport.use(new GithubStrategy({
-    clientID: "c4b8b0266bbccb3b4e7d",
-    clientSecret: "a5c3dc999326b2783da5c02bf92f417dc33cab46",
+    clientID: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
     callbackURL: "http://localhost:3000/github/auth"
   }, (accessToken, refreshToken, profile, done) => {
 

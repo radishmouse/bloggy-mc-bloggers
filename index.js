@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 // const http = require('http');
 const express = require('express');
 // const server = http.createServer((req, res) => {});
@@ -18,11 +20,11 @@ setupAuth(app);
 
 // Home page
 app.get('/', (req, res) => {
-  console.log('are we logged in');
-  console.log(req.isAuthenticated());
-  if (req.isAuthenticated() && req.session && req.session.passport) {
-    console.log(`req.session.passport.user: ${req.session.passport.user}`);
-  }
+  // console.log('are we logged in');
+  // console.log(req.isAuthenticated());
+  // if (req.isAuthenticated() && req.session && req.session.passport) {
+  //   console.log(`req.session.passport.user: ${req.session.passport.user}`);
+  // }
   res.render('home', {
     title: "yay it worked",
     isLoggedIn: req.isAuthenticated() // Providing a var to the template
