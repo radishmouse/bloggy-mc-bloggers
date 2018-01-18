@@ -1,6 +1,6 @@
 const passport = require('passport');
-const session = require('express-session');
 const GithubStrategy = require('passport-github').Strategy;
+const session = require('express-session');
 const cookieParser = require('cookie-parser')
 const User = require('./models/user');
 
@@ -63,13 +63,13 @@ const setupAuth = (app) => {
   // #5 call passport.serializeUser
   // This configures how passport checks what's in the
   // session to see if the login is still valid.
-  passport.deserializeUser(function(user, done) {
+  passport.deserializeUser(function(id, done) {
     console.log('we are deserializing');
     // placeholder for custom user deserialization.
     // maybe you are going to get the user from mongo by id?
     // null is for errors
-    console.log(user);
-    done(null, user);
+    console.log(id);
+    done(null, id);
   });
 
   // #6 initialize passport middleware and register it with express
