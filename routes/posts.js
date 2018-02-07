@@ -3,7 +3,16 @@ const router = express.Router();
 
 const Post = require('../models/post');
 
+
+router.all('*', (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  next();
+})
+
 router.route('/blog')
+
   .post((req, res) => {
 
     console.log(req.body);
@@ -20,18 +29,20 @@ router.route('/blog')
     Post.findAll()
       .then(allPosts => {
 
-        const posts = allPosts.map(p => {
-          return {
-            title: p.title,
-            content: p.content.substring(0, 10) + '...',
-            id: p.id
-          }
-        });
+        res.json(allPosts);
 
-        res.render('blog-list', {
-          // posts: allPosts
-          posts: posts
-        });
+        // const posts = allPosts.map(p => {
+        //   return {
+        //     title: p.title,
+        //     content: p.content.substring(0, 10) + '...',
+        //     id: p.id
+        //   }
+        // });
+
+        // res.render('blog-list', {
+        //   // posts: allPosts
+        //   posts: posts
+        // });
       });
   })
   .delete((req, res) => {
