@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 // const http = require('http');
 const express = require('express');
 // const server = http.createServer((req, res) => {});
@@ -5,6 +7,7 @@ const app = express();
 app.use(express.static('public'));
 
 const bodyParser = require('body-parser');
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 const posts = require('./routes/posts');
@@ -21,8 +24,9 @@ app.get('/please-work', (req, res) => {
   })
 })
 
-app.listen(3000, () => {
-  console.log('Running on port 3000');
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Running on port ${PORT}`);
 });
 
 // const Post = require('./models/post');

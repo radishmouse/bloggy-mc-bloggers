@@ -117,6 +117,7 @@ router.route('/blog/:id/edit')
     })
   })
   .post((req, res) => {
+    console.log(req.body);
     Post.findOne({
       where: {
         id: req.params.id
@@ -126,13 +127,14 @@ router.route('/blog/:id/edit')
         title: req.body.title,
         content: req.body.content
       }).then(updatedResult => {
-        res.render('blog-form', {
-          title: updatedResult.title,
-          content: updatedResult.content,
-          editRoute: `/${updatedResult.id}/edit`,
-          id: updatedResult.id,
-          message: 'Successfully updated blog post!'
-        });
+        res.json(updatedResult);
+        // res.render('blog-form', {
+        //   title: updatedResult.title,
+        //   content: updatedResult.content,
+        //   editRoute: `/${updatedResult.id}/edit`,
+        //   id: updatedResult.id,
+        //   message: 'Successfully updated blog post!'
+        // });
       });
     });
   })
